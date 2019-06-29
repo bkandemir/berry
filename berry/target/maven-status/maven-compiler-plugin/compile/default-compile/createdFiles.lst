@@ -1,0 +1,4 @@
+edu/sabanciuniv/berry/config/SwaggerConfig.class
+edu/sabanciuniv/berry/BerryApplication.class
+edu/sabanciuniv/berry/resource/HelloResource.class
+edu/sabanciuniv/berry/domain/User.class
