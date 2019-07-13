@@ -1,3 +1,2 @@
-![unnamed](https://user-images.githubusercontent.com/25486099/61168189-0cf8a080-a553-11e9-8e9b-b1fd343c4e2e.png)
-# berry
+<img width="109" alt="berry" src="https://user-images.githubusercontent.com/25486099/61168219-695bc000-a553-11e9-92cb-abea8d2a72c3.PNG">
 Social Media of Note Sharing !
