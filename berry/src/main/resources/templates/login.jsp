@@ -1,4 +1,5 @@
-
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
 
-    <title>berry - Social Media of Note Sharing!</title>
+    <title>berry - Social Media of Note Sharing</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/sign-in/">
 
@@ -21,7 +22,7 @@
   </head>
 
   <body class="text-center">
-    <form class="form-signin">
+    <form class="form-signin" action="">
       <img class="mb-4" src="images/logo.png" alt="" >
       <h1 class="h3 mb-3 font-weight-normal">Welcome</h1>
       <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
@@ -30,7 +31,7 @@
       <button class="btn btn-lg btn-primary btn-block" type="submit" style="background-color:#87398C">Sign in</button>
       <div class="text-center p-t-115">
 		
-		<span class="txt1">Don’t have an account?</span><a class="txt2" href="register"> Sign Up</a>
+		<span class="txt1">Dont have an account?</span><a class="txt2" href="register"> Sign Up</a>
 	  </div>
       <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
     </form>
