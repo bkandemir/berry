@@ -116,9 +116,24 @@ public class HomeController {
 		return "index";
 	}
 	
+	@RequestMapping("/addnote")
+	public String addnote() {
+		return "addnote";
+	}
+	
+	@RequestMapping("/profile")
+	public String profile() {
+		return "profile";
+	}
+	
 	@RequestMapping("/guest")
 	public String guest() {
 		return "guest";
+	}
+	
+	@RequestMapping("/settings")
+	public String settings() {
+		return "settings";
 	}
 
 }
