@@ -61,7 +61,7 @@ public class HomeController {
 			if(check.isPresent()==true) {
 			if (check.get().getUsername().equals(user.getUsername()) && check.get().getPassword().equals(user.getPassword()))
 			{
-				return "index";
+				return "redirect:/index";
 			}
 			else{
 				return "login";
