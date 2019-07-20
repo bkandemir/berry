@@ -51,24 +51,28 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(@Valid User user, BindingResult result, HttpServletRequest request) {
+	public String login(@Valid User user, BindingResult result, HttpServletRequest request,Model model) {
 		if (result.hasErrors()) 
 		{
 			return "login";
 		
 		} else {
 			Optional<User> check = userRepository.findById(user.getUsername());
-			if(check.isPresent()==true) {
-			if (check.get().getUsername().equals(user.getUsername()) && check.get().getPassword().equals(user.getPassword()))
+			if(check.isPresent()==true) 
 			{
-				return "redirect:/index";
-			}
-			else{
-				return "login";
+				if (check.get().getUsername().equals(user.getUsername()) && check.get().getPassword().equals(user.getPassword()))
+				{
+					return "redirect:/index";
+				}
+				else
+				{
+					model.addAttribute("logError","logError");
+					return "login";
 				} 
 			}
 			else 
 			{ 
+				model.addAttribute("logError","logError");
 				return "login";
 			}
 		}	

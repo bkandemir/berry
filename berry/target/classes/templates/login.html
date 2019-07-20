@@ -23,8 +23,9 @@
     <form class="form-signin" id="my-form" th:action="@{/login}" th:object="${user}" method="GET" action="">
       <img class="mb-4" src="images/logo.png" alt="" >
       <h1 class="h3 mb-3 font-weight-normal">Welcome</h1>
-      <div th:if="${param.error}" class="alert alert-danger">    
-       Invalid username and password.
+      <div th:if="${logError != null}" class="alert alert-danger" role="alert">  
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> 
+       Invalid username or password.
       </div>
       <div th:if="${param.logout}" class="alert alert-success"> 
         You have been logged out.
@@ -46,4 +47,14 @@
       <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
     </form>
   </body>
+    <script src="jquery/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script id="rendered-js">
+      window.setTimeout(function () {
+  $(".alert").fadeTo(500, 0).slideUp(500, function () {
+    $(this).remove();
+  });
+}, 1000);
+      //# sourceURL=pen.js
+    </script>
 </html>
