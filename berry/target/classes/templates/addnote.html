@@ -226,7 +226,7 @@ body {
 <div class="form-group">
 <label for="courseCode">Course Code</label>
 <input type="text" name="courseID" class="form-control"  placeholder="Enter Course Code" th:field="*{courseID}" id="courseID" required>
-<small id="emailHelp" class="form-text text-muted">Example->IT541</small>
+<small id="emailHelp" class="form-text text-muted">Example-> IT541</small>
 </div>
 <div class="form-group">
 <label for="courseName">Course Name</label>
@@ -257,9 +257,13 @@ body {
 <textarea class="form-control" name="textarea" rows="4"></textarea>
 </div>
 <div class="form-group">
+ 
 <label for="file">File input</label>
-<input type="file" class="form-control-file" name="file" aria-describedby="fileHelp">
+<input type="file" class="form-control-file" name="file" aria-describedby="fileHelp" id="singleFileUploadInput">
 <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+
+
+
 </div>
 </div>
 <step v-for="step in steps" :currentstep="currentstep" :key="step.id" :step="step" :stepcount="steps.length" @step-change="stepChanged">
@@ -395,6 +399,7 @@ new Vue({
   <!-- Bootstrap core JavaScript -->
   <script src="/jquery/jquery.min.js"></script>
   <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/main.js"></script>
 
   <!-- Menu Toggle Script -->
   <script>
