@@ -100,7 +100,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-l-6">
                         <div class="profile-head">                       
                                     <h5>
                          
@@ -111,14 +111,65 @@
                                     <h6>                       
                          <input class="lastNameText" type="text" th:field="*{schoolID}" readonly="readonly"/>
                                     </h6>
-                                    <br>   
+                                    <br><br><br><br><br>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">My Notes</a>
                                 </li>
                             </ul>
-                        </div>
+                        </div>                        
                     </div>
+<div class="card">
+<table class="table table-hover shopping-cart-wrap">
+<thead class="text-muted">
+<tr>
+  <th scope="col">Course</th>
+  <th scope="col" width="130">Year</th>
+  <th scope="col" width="130">Semester</th>
+  <th scope="col" width="130">Added By</th>
+  <th scope="col" width="200" class="text-right">Document</th>
+</tr>
+</thead>
+<tbody>
+<tr th:each="note : ${noteList}">
+	<td>
+<figure class="media">
+	<figcaption class="media-body">
+		<h6 class="title text-truncate" th:text="${note.courseName}"></h6>
+		<dl class="param param-inline small">
+		  <dt>Code: </dt>
+		  <dd th:text="${note.courseID}"></dd>
+		</dl>
+		<dl class="param param-inline small">
+		  <dt>University: </dt>
+		  <dd th:text="${note.schoolID}"></dd>
+		</dl>
+	</figcaption>
+</figure> 
+	</td>
+		<td> 
+		<div class="price-wrap"> 
+			<var class="price" th:text="${note.year}"></var> 
+		</div> <!-- price-wrap .// -->
+	</td>
+	<td> 
+		<div class="price-wrap"> 
+			<var class="price" th:text="${note.semester}"></var> 
+		</div> <!-- price-wrap .// -->
+	</td>
+	<td> 
+		<div class="price-wrap"> 
+			<var class="price" th:text="${note.userID}"></var> 
+		</div> <!-- price-wrap .// -->
+	</td>
+	<td class="text-right"> 
+	<a href="" class="btn btn-primary btn-round" style="background-color:#87398C"> View</a>
+	</td>
+</tr>
+
+</tbody>
+</table>
+</div> <!-- card.// -->
                 </div>
                 <div class="row">
                     <div class="col-md-4">

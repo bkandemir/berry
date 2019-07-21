@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
 
@@ -40,7 +40,7 @@
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
-    <div id="page-content-wrapper">
+    <div id="page-content-wrapper"  style="background-color:#fff">
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
         <img id="menu-toggle"src="/images/unnamed.png"></img>
@@ -84,7 +84,92 @@
       </nav>
 
       <div class="container-fluid">
-        <h1 class="mt-4">Welcome</h1>
+<div class="container p-t-55">
+            	<form class="form-horizontal" id="my-form" th:action="@{/settings}" th:object="${user}" method="POST">
+
+                <strong><h4>&nbsp Change Password</h4></strong>
+                <br><br>               
+                
+                <div class="form-group">
+                    <label for="firstName" class="col-sm-3 control-label">First Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" th:field="*{firstName}" id="firstName" name="firstName" placeholder="First Name" readonly="readonly" class="form-control" autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-3 control-label">Last Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" th:field="*{lastName}" id="lastName" name="lastName" placeholder="Last Name" readonly="readonly" class="form-control" autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-sm-3 control-label">Email</label>
+                    <div class="col-sm-9">
+                        <input type="text" th:field="*{email}" id="email" name="email" placeholder="E-Mail" readonly="readonly" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-3 control-label">School</label>
+                    <div class="col-sm-9">
+                        <input type="text" th:field="*{schoolID}" id="schoolID" name="schoolID" placeholder="School" readonly="readonly" class="form-control" autofocus>
+                    </div>
+                </div>
+                
+               	<div class="form-group">
+                    <label for="lastName" class="col-sm-3 control-label">Active</label>
+                    <div class="col-sm-9">
+                        <input type="text" th:field="*{enabled}" id="isEnabled" name="schoolID" placeholder="Is Enabled?" readonly="readonly" class="form-control" autofocus>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="userName" class="col-sm-3 control-label">Username</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="username" name="username" th:field="*{username}" placeholder="Username" class="form-control" readonly="readonly" autofocus>                        
+                    </div>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label for="password" class="col-sm-3 control-label"> New Password</label>
+                    <div class="col-sm-9">
+                        <input type="password"  id="password" name="password" th:field="*{password}"  placeholder="Password" class="form-control" required>
+                    </div>
+                </div>
+                
+                 <div class="form-group">
+                    <label for="password" class="col-sm-3 control-label"> Confirm Password</label>
+                    <div class="col-sm-9">
+                        <input type="password"  id="confirm_password" name="confirm_password" placeholder="Confirm Password" class="form-control">
+                    </div>
+                </div>
+                <script>
+
+                var password = document.getElementById("password")
+                , confirm_password = document.getElementById("confirm_password");
+
+              function validatePassword(){
+                if(password.value != confirm_password.value) {
+                  confirm_password.setCustomValidity("Passwords Don't Match");
+                } else {
+                  confirm_password.setCustomValidity('');
+                }
+              }
+
+              password.onchange = validatePassword;
+              confirm_password.onkeyup = validatePassword;
+                
+                </script>
+                
+                <!-- /.form-group -->
+                <div class="form-group">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <button type="submit" class="btn btn-primary btn-block" style="background-color:#87398C">Submit</button>
+                    </div>
+                </div>
+            </form> <!-- /form -->
+        </div> <!-- ./container -->
+
       </div>
     </div>
     <!-- /#page-content-wrapper -->

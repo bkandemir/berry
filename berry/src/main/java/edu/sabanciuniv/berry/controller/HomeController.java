@@ -1,10 +1,9 @@
 package edu.sabanciuniv.berry.controller;
 
-import java.util.Optional;
 
+import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,16 +13,14 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import edu.sabanciuniv.berry.domain.Authority;
 import edu.sabanciuniv.berry.domain.Note;
-import edu.sabanciuniv.berry.domain.School;
 import edu.sabanciuniv.berry.domain.User;
 import edu.sabanciuniv.berry.repository.AuthorityRepository;
+import edu.sabanciuniv.berry.repository.NoteByUsernameRepository;
 import edu.sabanciuniv.berry.repository.NoteRepository;
-import edu.sabanciuniv.berry.repository.SchoolRepository;
 import edu.sabanciuniv.berry.repository.UserRepository;
-import edu.sabanciuniv.berry.service.implementation.SchoolServiceImpl;
+
 
 @Controller
 public class HomeController {
@@ -41,7 +38,7 @@ public class HomeController {
 	private NoteRepository noteRepository;
 	
 	@Autowired
-	private SchoolRepository schoolRepository;
+	private NoteByUsernameRepository notebyUsernameRepository;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String welcome(ModelMap model) {
@@ -51,6 +48,7 @@ public class HomeController {
 				
 		return "welcome";
 	}
+	
 
 	// Login form
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -175,6 +173,9 @@ public class HomeController {
 		md.addAttribute("user", test);
 		
 		
+		
+		md.addAttribute("noteList", notebyUsernameRepository.findTitleById(currentUser.getUsername()));
+		
 		return "profile";
 	}
 	
@@ -186,8 +187,26 @@ public class HomeController {
 		return "guest";
 	}
 	
-	@RequestMapping("/settings")
-	public String settings() {
+	@RequestMapping(value = "/settings", method = RequestMethod.POST)
+	public String settings(@Valid User user, BindingResult result, HttpServletRequest request) {
+		
+		if (result.hasErrors()) 
+		{
+			return "settings";
+		
+		} else
+		{		
+			userRepository.save(user);
+		}	
+		
+		return "redirect:/login";
+	}
+	
+	@RequestMapping(value = "/settings", method = RequestMethod.GET)
+	public String settings(Model model) {
+		
+		Optional<User> test=userRepository.findById(currentUser.getUsername());
+		model.addAttribute("user", test);
 		return "settings";
 	}
 

@@ -13,11 +13,17 @@ public class Note {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id", nullable = false, updatable=false)
 	private int id;
+	@Column(name="coursename")
 	private String courseName;
+	@Column(name="courseid")
 	private String courseID;
+	@Column(name="year")
 	private String year;
+	@Column(name="semester")
 	private String semester;
+	@Column(name="userid")
 	private String userID;//it should be userID
+	@Column(name="schoolid")
 	private String schoolID;
 	
 	public Note() {
