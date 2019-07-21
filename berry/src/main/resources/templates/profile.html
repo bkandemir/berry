@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
 
@@ -88,7 +88,8 @@
 
       <div class="container-fluid">
       <div class="container emp-profile">
-            <form method="post">
+            <form method="GET" th:action="@{/profile}">
+              <div  th:object="${user}">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
@@ -100,14 +101,17 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="profile-head">
+                        <div class="profile-head">                       
                                     <h5>
-                                        Berkay Kandemir
-                                    </h5>
-                                    <h6>
-                                        Sabancı University
+                         
+                         <input class="lastNameText" type="text" th:field="*{username}" readonly="readonly"/>
+                         <!--  <input class="lastNameText" type="text" th:field="*{lastName}" readonly="readonly"/>-->
+             
+                                    </h5>           
+                                    <h6>                       
+                         <input class="lastNameText" type="text" th:field="*{schoolID}" readonly="readonly"/>
                                     </h6>
-                                    <br>
+                                    <br>   
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">My Notes</a>
@@ -178,6 +182,7 @@
                         </div>
                     </div>
                 </div>
+              </div>
             </form>           
         </div>
       </div>

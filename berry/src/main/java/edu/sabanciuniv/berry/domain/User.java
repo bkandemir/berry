@@ -20,7 +20,7 @@ public class User{
 	 @NotBlank(message = "Password can not be null!")
 	 private String password;
 	 
-	 private int schoolID;
+	 private String schoolID;
 	 private boolean enabled=true;
 	 
 
@@ -30,7 +30,7 @@ public class User{
 	}
 
 	public User(String firstName, String lastName, String email, String username, String password,
-			int schoolID, boolean enabled) {
+			String schoolID, boolean enabled) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -82,11 +82,11 @@ public class User{
 		this.password = password;
 	}
 
-	public int getSchoolID() {
+	public String getSchoolID() {
 		return schoolID;
 	}
 
-	public void setSchoolID(int schoolID) {
+	public void setSchoolID(String schoolID) {
 		this.schoolID = schoolID;
 	}
 

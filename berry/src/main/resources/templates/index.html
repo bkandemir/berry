@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
 
@@ -109,71 +109,35 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr th:each="note : ${noteList}">
 	<td>
 <figure class="media">
 	<figcaption class="media-body">
-		<h6 class="title text-truncate">Software Testing </h6>
+		<h6 class="title text-truncate" th:text="${note.courseName}"></h6>
 		<dl class="param param-inline small">
 		  <dt>Code: </dt>
-		  <dd>IT538</dd>
+		  <dd th:text="${note.courseID}"></dd>
 		</dl>
 		<dl class="param param-inline small">
 		  <dt>University: </dt>
-		  <dd>Sabancı University</dd>
+		  <dd th:text="${note.schoolID}"></dd>
 		</dl>
 	</figcaption>
 </figure> 
 	</td>
 		<td> 
 		<div class="price-wrap"> 
-			<var class="price">2019</var> 
+			<var class="price" th:text="${note.year}"></var> 
 		</div> <!-- price-wrap .// -->
 	</td>
 	<td> 
 		<div class="price-wrap"> 
-			<var class="price">2</var> 
+			<var class="price" th:text="${note.semester}"></var> 
 		</div> <!-- price-wrap .// -->
 	</td>
 	<td> 
 		<div class="price-wrap"> 
-			<var class="price">bkandemir</var> 
-		</div> <!-- price-wrap .// -->
-	</td>
-	<td class="text-right"> 
-	<a href="" class="btn btn-primary btn-round" style="background-color:#87398C"> View</a>
-	</td>
-</tr>
-<tr>
-	<td>
-<figure class="media">
-	<figcaption class="media-body">
-		<h6 class="title text-truncate">Data Structures </h6>
-		<dl class="param param-inline small">
-		  <dt>Code: </dt>
-		  <dd>CS201</dd>
-		</dl>
-		<dl class="param param-inline small">
-		  <dt>University: </dt>
-		  <dd>Koç University</dd>
-		</dl>
-	</figcaption>
-</figure> 
-	</td>
-		<td> 
-		<div class="price-wrap"> 
-			<var class="price">2017</var> 
-		</div> <!-- price-wrap .// -->
-	</td>
-
-	<td> 
-		<div class="price-wrap"> 
-			<var class="price">1</var> 
-		</div> <!-- price-wrap .// -->
-	</td>
-		<td> 
-		<div class="price-wrap"> 
-			<var class="price">admin</var> 
+			<var class="price" th:text="${note.userID}"></var> 
 		</div> <!-- price-wrap .// -->
 	</td>
 	<td class="text-right"> 

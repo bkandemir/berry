@@ -1,17 +1,101 @@
 package edu.sabanciuniv.berry.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
-//@SuppressWarnings("deprecation")
-//@Entity
-//@Table(name = "note")
+@Entity
+@Table(name = "note")
 public class Note {
-
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id", nullable = false, updatable=false)
 	private int id;
 	private String courseName;
 	private String courseID;
 	private String year;
 	private String semester;
-	private String noteType;
 	private String userID;//it should be userID
+	private String schoolID;
+	
+	public Note() {
+		super();
+	}
+
+	public Note(int id, String courseName, String courseID, String year, String semester, String userID, String schoolID) {
+		super();
+		this.id = id;
+		this.courseName = courseName;
+		this.courseID = courseID;
+		this.year = year;
+		this.semester = semester;
+		this.userID = userID;
+		this.schoolID=schoolID;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getCourseName() {
+		return courseName;
+	}
+
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
+
+	public String getCourseID() {
+		return courseID;
+	}
+
+	public void setCourseID(String courseID) {
+		this.courseID = courseID;
+	}
+
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public String getSemester() {
+		return semester;
+	}
+
+	public void setSemester(String semester) {
+		this.semester = semester;
+	}
+
+	public String getUserID() {
+		return userID;
+	}
+
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+	
+
+	public String getSchoolID() {
+		return schoolID;
+	}
+
+	public void setSchoolID(String schoolID) {
+		this.schoolID = schoolID;
+	}
+
+	@Override
+	public String toString() {
+		return "Note [id=" + id + ", courseName=" + courseName + ", courseID=" + courseID + ", year=" + year
+				+ ", semester=" + semester + ", userID=" + userID + ", schoolID=" + schoolID + "]";
+	}	
+	
 }

@@ -1,19 +1,17 @@
 package edu.sabanciuniv.berry.domain;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
 
 @Entity
+@Table(name = "school")
 public class School {
-	 @Id
-	 @GeneratedValue(strategy=GenerationType.AUTO)
-	 @Column(name="id", nullable = false, updatable=false)
+	@Id
 	private long id;
+	
 	private String name;
-	private String location;
 	
 	
 	public School() {
@@ -21,11 +19,10 @@ public class School {
 	}
 
 
-	public School(long id, String name, String location) {
+	public School(long id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.location = location;
 	}
 
 
@@ -47,15 +44,7 @@ public class School {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 
-
-	public String getLocation() {
-		return location;
-	}
-
-
-	public void setLocation(String location) {
-		this.location = location;
-	}
 
 }
