@@ -18,7 +18,7 @@ function uploadSingleFile(file) {
         var response = JSON.parse(xhr.responseText);
         if(xhr.status == 200) {
             singleFileUploadError.style.display = "none";
-            singleFileUploadSuccess.innerHTML = "<p>File Uploaded Successfully.</p><p>DownloadUrl : <a href='" + response.fileDownloadUri + "' target='_blank'>" + response.fileDownloadUri + "</a></p>";
+            singleFileUploadSuccess.innerHTML = response.fileDownloadUri;
             singleFileUploadSuccess.style.display = "block";
         } else {
             singleFileUploadSuccess.style.display = "none";
@@ -31,13 +31,17 @@ function uploadSingleFile(file) {
 
 
 singleUploadForm.addEventListener('submit', function(event){
-    var files = singleFileUploadInput.files;
-    if(files.length === 0) {
-        singleFileUploadError.innerHTML = "Please select a file";
-        singleFileUploadError.style.display = "block";
-    }
+    
+	var text =  singleFileUploadSuccess.innerHTML;
+    if(singleFileUploadSuccess.innerHTML==""){
+    	var files = singleFileUploadInput.files;
+    	if(files.length === 0) {
+    		singleFileUploadError.innerHTML = "Please select a file";
+    		singleFileUploadError.style.display = "block";
+    	}
     uploadSingleFile(files[0]);
     event.preventDefault();
+    }
 }, true);
 
 

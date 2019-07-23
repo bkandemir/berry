@@ -13,6 +13,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
 import edu.sabanciuniv.berry.domain.Authority;
 import edu.sabanciuniv.berry.domain.Note;
 import edu.sabanciuniv.berry.domain.User;
@@ -159,8 +162,8 @@ public class HomeController {
 		{
 			return "addnote";
 		
-		} else
-		{		
+		}else
+		{
 				//Hangi kullanıcı ekledi
 				note.setUserID(currentUser.getUsername());
 				noteRepository.save(note);

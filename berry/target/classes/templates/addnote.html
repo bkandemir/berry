@@ -64,7 +64,6 @@
    </div>
 </div>
   </form>
-
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -88,7 +87,8 @@
       </nav>
 
       <div class="container-fluid">
-        <form th:action="@{/addnote}" th:object="${note}" method="POST" action="">
+      
+        <form th:action="@{/addnote}" th:object="${note}" method="POST" action="" id="singleUploadForm" name="singleUploadForm" >
 <br>
 
 <style>
@@ -250,18 +250,26 @@ body {
 </select>
 </div>
 </div>
+
 <div v-show="currentstep == 3">
 <h3>Step 3</h3>
 <div class="form-group">
 <label for="textarea">Add Document</label>
-<textarea class="form-control" name="textarea" rows="4"></textarea>
+<textarea class="form-control" name="textarea" rows="4" th:field="*{attachment}" id="singleFileUploadSuccess" readonly="readonly"></textarea>
 </div>
 <div class="form-group">
  
-<label for="file">File input</label>
-<input type="file" class="form-control-file" name="file" aria-describedby="fileHelp" id="singleFileUploadInput">
-<small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
 
+            <div class="upload-content">
+                <div class="single-upload">
+                        <input id="singleFileUploadInput" type="file" name="file" class="file-input" required />
+                        <button type="submit" class="primary submit-btn">Submit</button>
+                    <div class="upload-response">
+                        <div id="singleFileUploadError"></div>
+                        <div id="singleFileUploadSuccess"></div>
+                    </div>
+                </div>
+            </div>
 
 
 </div>

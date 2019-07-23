@@ -25,12 +25,14 @@ public class Note {
 	private String userID;//it should be userID
 	@Column(name="schoolid")
 	private String schoolID;
+	@Column(name="attachment")
+	private String attachment;
 	
 	public Note() {
 		super();
 	}
 
-	public Note(int id, String courseName, String courseID, String year, String semester, String userID, String schoolID) {
+	public Note(int id, String courseName, String courseID, String year, String semester, String userID, String schoolID,String attachment) {
 		super();
 		this.id = id;
 		this.courseName = courseName;
@@ -39,6 +41,7 @@ public class Note {
 		this.semester = semester;
 		this.userID = userID;
 		this.schoolID=schoolID;
+		this.attachment=attachment;
 	}
 
 	public int getId() {
@@ -97,11 +100,23 @@ public class Note {
 	public void setSchoolID(String schoolID) {
 		this.schoolID = schoolID;
 	}
+	
+
+	public String getAttachment() {
+		return attachment;
+	}
+
+	public void setAttachment(String attachment) {
+		this.attachment = attachment;
+	}
 
 	@Override
 	public String toString() {
 		return "Note [id=" + id + ", courseName=" + courseName + ", courseID=" + courseID + ", year=" + year
-				+ ", semester=" + semester + ", userID=" + userID + ", schoolID=" + schoolID + "]";
-	}	
+				+ ", semester=" + semester + ", userID=" + userID + ", schoolID=" + schoolID + ", attachment="
+				+ attachment + "]";
+	}
+
+
 	
 }
