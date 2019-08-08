@@ -1,6 +1,9 @@
 package edu.sabanciuniv.berry.controller;
 
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -22,6 +25,7 @@ import edu.sabanciuniv.berry.domain.User;
 import edu.sabanciuniv.berry.repository.AuthorityRepository;
 import edu.sabanciuniv.berry.repository.NoteByUsernameRepository;
 import edu.sabanciuniv.berry.repository.NoteRepository;
+import edu.sabanciuniv.berry.repository.SearchNoteRepository;
 import edu.sabanciuniv.berry.repository.UserRepository;
 
 
@@ -45,6 +49,9 @@ public class HomeController {
 	
 	@Autowired
 	private NoteByUsernameRepository notebyUsernameRepository;
+	
+	@Autowired
+	private SearchNoteRepository searchNoteRepository;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String welcome(ModelMap model) {
@@ -215,5 +222,78 @@ public class HomeController {
 		model.addAttribute("user", test);
 		return "settings";
 	}	
+	
+    
+	@RequestMapping(value="/search", method = RequestMethod.POST)
+    public String search(@RequestParam(value="courseName") String courseName, Model model)
+    {
+		List<Note> notes = new ArrayList<Note>();
+		
+		if(courseName=="") {
+			
+			Iterable<Note> u = noteRepository.findAll();
+	        Iterator uIterator = u.iterator();
+
+	        while (uIterator.hasNext())
+	        {
+	            notes.add((Note)uIterator.next());
+	        }
+			
+			
+		}else {
+
+        
+
+			Iterable<Note> u = searchNoteRepository.findByCourseIDContaining(courseName);
+			Iterator uIterator = u.iterator();
+
+			while (uIterator.hasNext())
+			{
+				notes.add((Note)uIterator.next());
+			}
+			
+		}
+        model.addAttribute("noteList", notes);
+        model.addAttribute("notesCount", notes.size());
+        model.addAttribute("notehStr", courseName);
+        
+        return "index";
+    }
+	
+	@RequestMapping(value="/guestSearch", method = RequestMethod.POST)
+    public String guestsearch(@RequestParam(value="courseid") String courseID, Model model)
+    {
+		List<Note> notes = new ArrayList<Note>();
+		
+		if(courseID=="") {
+			
+			Iterable<Note> u = noteRepository.findAll();
+	        Iterator uIterator = u.iterator();
+
+	        while (uIterator.hasNext())
+	        {
+	            notes.add((Note)uIterator.next());
+	        }
+			
+			
+		}else {
+
+        
+
+			Iterable<Note> u = searchNoteRepository.findByCourseIDContaining(courseID);
+			Iterator uIterator = u.iterator();
+
+			while (uIterator.hasNext())
+			{
+				notes.add((Note)uIterator.next());
+			}
+			
+		}
+        model.addAttribute("noteList", notes);
+        model.addAttribute("notesCount", notes.size());
+        model.addAttribute("notehStr", courseID);
+        
+        return "guest";
+    }
 
 }

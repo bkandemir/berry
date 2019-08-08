@@ -54,10 +54,10 @@
 <nav class="nav navbar-nav navbar-center">
 
 </nav>
-  <form class="form-inline">
+  <form class="form-inline" th:action="@{/search}" method="POST">
 <div class="wrap">
    <div class="search">
-      <input type="text" class="searchTerm" placeholder="Search">
+      <input type="text" class="searchTerm" placeholder="Search by Course Name" id="courseName" name="courseName">
       <button type="submit" class="searchButton">
         <i class="fa fa-search"></i>
      </button>
