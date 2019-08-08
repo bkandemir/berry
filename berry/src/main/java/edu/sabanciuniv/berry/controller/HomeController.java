@@ -244,7 +244,7 @@ public class HomeController {
 
         
 
-			Iterable<Note> u = searchNoteRepository.findByCourseIDContaining(courseName);
+			Iterable<Note> u = searchNoteRepository.findByCourseNameContaining(courseName);
 			Iterator uIterator = u.iterator();
 
 			while (uIterator.hasNext())
@@ -261,11 +261,11 @@ public class HomeController {
     }
 	
 	@RequestMapping(value="/guestSearch", method = RequestMethod.POST)
-    public String guestsearch(@RequestParam(value="courseid") String courseID, Model model)
+    public String guestsearch(@RequestParam(value="courseName") String courseName, Model model)
     {
 		List<Note> notes = new ArrayList<Note>();
 		
-		if(courseID=="") {
+		if(courseName=="") {
 			
 			Iterable<Note> u = noteRepository.findAll();
 	        Iterator uIterator = u.iterator();
@@ -280,7 +280,7 @@ public class HomeController {
 
         
 
-			Iterable<Note> u = searchNoteRepository.findByCourseIDContaining(courseID);
+			Iterable<Note> u = searchNoteRepository.findByCourseNameContaining(courseName);
 			Iterator uIterator = u.iterator();
 
 			while (uIterator.hasNext())
@@ -291,7 +291,7 @@ public class HomeController {
 		}
         model.addAttribute("noteList", notes);
         model.addAttribute("notesCount", notes.size());
-        model.addAttribute("notehStr", courseID);
+        model.addAttribute("notehStr", courseName);
         
         return "guest";
     }

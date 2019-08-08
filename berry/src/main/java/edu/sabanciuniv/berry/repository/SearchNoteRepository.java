@@ -11,6 +11,6 @@ import edu.sabanciuniv.berry.domain.Note;
 public interface SearchNoteRepository extends CrudRepository<Note, String> {
 	
 	@Query("SELECT n FROM Note n where courseName like %:courseName%") 
-    List<Note> findByCourseIDContaining(@Param("courseName") String courseName);
+    List<Note> findByCourseNameContaining(@Param("courseName") String courseName);
 
 }
