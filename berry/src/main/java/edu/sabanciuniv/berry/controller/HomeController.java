@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +16,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import edu.sabanciuniv.berry.domain.Authority;
+import edu.sabanciuniv.berry.domain.Mail;
 import edu.sabanciuniv.berry.domain.Note;
 import edu.sabanciuniv.berry.domain.User;
+import edu.sabanciuniv.berry.mail.EmailService;
 import edu.sabanciuniv.berry.repository.AuthorityRepository;
 import edu.sabanciuniv.berry.repository.NoteByUsernameRepository;
 import edu.sabanciuniv.berry.repository.NoteRepository;
@@ -53,6 +55,9 @@ public class HomeController {
 	
 	@Autowired
 	private SearchNoteRepository searchNoteRepository;
+	
+	@Autowired
+    private EmailService emailService;
 
 	
 	
@@ -88,6 +93,7 @@ public class HomeController {
 					currentUser.setFirstName(check.get().getFirstName().toString());
 					currentUser.setLastName(check.get().getLastName().toString());
 					currentUser.setSchoolID(check.get().getSchoolID());
+					currentUser.setEmail(check.get().getEmail());
 					return "redirect:/index";
 				}
 				else{
@@ -131,6 +137,9 @@ public class HomeController {
 				auth.setUsername(user.getUsername());
 				auth.setRole("ROLE_USER");
 				authorityRepository.save(auth);
+				if(!user.getEmail().isEmpty()) {
+					mail(user.getEmail(),"Welcome to berry!","Share or browse your content whenever you want!");			
+				}
 				return "login";
 			} else { // it means that this username exists
 				return "redirect:/register?error";
@@ -162,6 +171,9 @@ public class HomeController {
 		}else{
 			//Hangi kullanıcı ekledi
 			note.setUserID(currentUser.getUsername());
+			if(!currentUser.getEmail().isEmpty()) {
+				mail(currentUser.getEmail(),"Content Uploaded","Your content is uploaded successfully.");			
+			}
 			noteRepository.save(note);
 		}	
 		
@@ -195,6 +207,9 @@ public class HomeController {
 			return "settings";
 		
 		} else{		
+			if(!currentUser.getEmail().isEmpty()) {
+				mail(currentUser.getEmail(),"Password Changed","Your password is changed. You can login with your new password.");			
+			}
 			userRepository.save(user);
 		}			
 		return "redirect:/login";
@@ -326,4 +341,22 @@ public class HomeController {
 	
 		return "userprofile";
 	}
+	
+	public void mail(String email,String subject,String content) {
+		Mail mail = new Mail();
+        mail.setFrom("infoberryapplication@gmail.com");
+        mail.setTo(email);
+        mail.setSubject(subject);
+        mail.setContent(content);
+
+        try {
+			
+        	emailService.sendMail(mail);
+		
+        } catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 }
