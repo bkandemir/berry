@@ -359,4 +359,29 @@ public class HomeController {
 		}
 	}
 	
+	@RequestMapping(value="/forgetpassword", method = RequestMethod.GET)
+    public String forgetpassword(Model md)
+    {    
+		md.addAttribute("user", new User());
+        return "forgetpassword";
+    }
+	
+	@RequestMapping(value="/forgetpassword", method = RequestMethod.POST)
+    public String forgetpassword(@RequestParam(value="username") String username, Model model)
+    {
+		List<User> User = new ArrayList<User>();
+		if(username=="") {			
+			return "forgetpassword";
+		}else {
+			Optional<User> u = userRepository.findById(username);
+			if(u.isPresent()) {
+				if(!u.get().getEmail().isEmpty()) {
+					mail(u.get().getEmail(),"Password Requested","Your Password:"+u.get().getPassword()+". Please reset your password when loggen in.");			
+				}
+			}
+		}
+        
+        return "redirect:/login";
+    }
+	
 }
