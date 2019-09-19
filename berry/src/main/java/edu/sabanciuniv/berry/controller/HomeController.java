@@ -384,4 +384,10 @@ public class HomeController {
         return "redirect:/login";
     }
 	
+	@RequestMapping(value="/aboutus", method = RequestMethod.GET)
+    public String aboutus()
+    {    
+        return "aboutus";
+    }
+	
 }
