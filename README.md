@@ -16,5 +16,7 @@ Technologies that you’ll encounter:
 
 ![Jul-17-2019 02-41-01](https://user-images.githubusercontent.com/25486099/61337062-7c64dd80-a83c-11e9-804b-cfb1d6117d9e.gif)
 
-![Screen Shot 2019-07-17 at 02 52 05](https://user-images.githubusercontent.com/25486099/61337499-43c60380-a83e-11e9-950e-7c41537d92f8.png)
+
+<img width="648" alt="Screen Shot 2019-07-20 at 11 34 12" src="https://user-images.githubusercontent.com/25486099/61576501-8eb47500-aae3-11e9-99aa-5edcc8a9b2c7.png">
+
 
